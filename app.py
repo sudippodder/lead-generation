@@ -261,7 +261,7 @@ def main():
             st.markdown("### Navigation")
             
             if user['role'] == 'admin':
-                user_pages = ['Dashboard', 'Profile', 'Admin Panel']
+                user_pages = ['Dashboard', 'Profile', 'Admin Panel','Job Lead Pipeline(Serp API-Free Approach)','Job Lead Pipeline(Free API)']
             else:
                 user_pages = ['Dashboard', 'Profile','Job Lead Pipeline(Serp API-Free Approach)','Job Lead Pipeline(Free API)']
 
