@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+.env
+__pycache__/
+*.pyc
+user_auth.db
+
+# Output files
+outputs/
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+
+# VSCode / JetBrains / IDE configs
+.vscode/
+.idea/
+".env"
+
+*.db
+*.sqlite
+*.sqlite3

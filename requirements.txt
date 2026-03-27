@@ -1,0 +1,7 @@
+streamlit
+pandas
+python-dotenv
+streamlit-cookies-manager
+requests 
+beautifulsoup4 
+feedparser
