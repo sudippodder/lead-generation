@@ -12,6 +12,7 @@ import job_lead
 import job_lead_api
 import job_lead_ranker
 import job_lead_db
+import sqlite
 # --- Configuration ---
 load_dotenv()
 
@@ -23,11 +24,11 @@ ADMIN_PASS = os.getenv("ADMIN_PASS", "adminpass")
 USER_COOKIE_KEY = "user_session_data"
 COOKIE_EXPIRY_DAYS = 30
 
-cookies = CookieManager()
+# cookies = CookieManager()
 
-if not cookies.ready():
-    st.info("Loading cookies...")
-    st.stop()
+# if not cookies.ready():
+#     st.info("Loading cookies...")
+#     st.stop()
 
 # --- Utility Functions for Hashing ---
 def hash_password(password):
@@ -92,7 +93,8 @@ def get_all_users():
 
 # --- Session State Management ---
 def initialize_session_state():
-    user_info_json = cookies.get("auth_user")
+    #user_info_json = cookies.get("auth_user")
+    user_info_json = []
     persistent_info = {}
     if user_info_json:
         try:
@@ -322,6 +324,7 @@ def main():
     else:
         #show_login_page()
         job_lead_db.run()
+        #sqlite.main() 
 
 
 if __name__ == '__main__':
