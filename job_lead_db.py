@@ -606,7 +606,7 @@ section[data-testid="stSidebar"] .block-container { padding:1.5rem 1rem; }
     # )
 
     # st.markdown("---")
-    mode = "🔍 Search & Save to DB"
+    mode = "🗄️ View from DB"
     # ── Mode 1: Search & Save ─────────────────────────────────────────────
     if mode == "🔍 Search & Save to DB":
         st.markdown("### Search")
