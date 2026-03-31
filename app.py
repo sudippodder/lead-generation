@@ -10,6 +10,8 @@ from streamlit_cookies_manager import CookieManager
 import job_lead_pipeline    
 import job_lead
 import job_lead_api
+import job_lead_ranker
+import job_lead_db
 # --- Configuration ---
 load_dotenv()
 
@@ -253,7 +255,7 @@ def main():
     initialize_session_state()
 
     with st.sidebar:
-        st.header("App Navigation")
+        st.header("Job Leads")
         if "logged_in" in st.session_state and st.session_state["logged_in"]:
             user = st.session_state['user_info']
             st.success(f"Logged in as: {user['username']}")
@@ -261,9 +263,9 @@ def main():
             st.markdown("### Navigation")
             
             if user['role'] == 'admin':
-                user_pages = ['Dashboard', 'Profile', 'Admin Panel','Job Lead Pipeline(Serp API-Free Approach)','Job Lead Pipeline(Free API)']
+                user_pages = ['Dashboard', 'Profile', 'Admin Panel','Job Lead Pipeline(Serp API-Free Approach)','Job Lead Pipeline(Free API)','Job Lead Ranker','Job Lead DB']
             else:
-                user_pages = ['Dashboard', 'Profile','Job Lead Pipeline(Serp API-Free Approach)','Job Lead Pipeline(Free API)']
+                user_pages = ['Dashboard', 'Profile','Job Lead Pipeline(Serp API-Free Approach)','Job Lead Pipeline(Free API)','Job Lead Ranker','Job Lead DB']
 
             current_page = st.session_state.get("page", "dashboard")
             if current_page == "admin":
@@ -293,8 +295,8 @@ def main():
                 logout_user()
 
         else:
-            st.info("Please sign in or register to access the application features.")
-            if st.button("Go to Login/Register", use_container_width=True):
+            #st.info("Please sign in or register to access the application features.")
+            if st.button("Search", use_container_width=True):
                  st.session_state['page'] = 'login'
 
 
@@ -311,10 +313,15 @@ def main():
             job_lead_api.run()
         elif page == 'job lead pipeline(free api)':
             job_lead.run()
+        elif page == 'job lead ranker':
+            job_lead_ranker.run()
+        elif page == 'job lead db':
+            job_lead_db.run()
         else:
             show_dashboard()
     else:
-        show_login_page()
+        #show_login_page()
+        job_lead_db.run()
 
 
 if __name__ == '__main__':
