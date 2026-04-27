@@ -1,6 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Detailed feature-by-feature comparison between the uploaded flow diagram and the existing job_lead_search.py implementation. Covers 17 matching features, 4 features in diagram but not in code (Google Sheets, Sales Outreach, Structured Extraction AI as separate step, Company Growing meaning), and 10 features in code but not in diagram (Step 5 Remote filter, multiple data sources, AI modes, SQLite storage, etc.). Overall match is approximately 70-75%.",
-  "updatedAt": "2026-04-22T08:36:23.812899100Z",
-  "requestFeedback": true
-}
