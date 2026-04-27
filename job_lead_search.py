@@ -1048,10 +1048,10 @@ def run_pipeline(google_queries, google_max_urls, status_ph, selected_sources=No
     # Already handled by score_lead() → priority = High/Medium/Low
 
     # ── Stage 7: Push to Google Sheets ────────────────────────────────────
-    print(sheet_id+" sheet_id")
-    print(sheet_creds+" sheet_creds")
-    print(passed)
-    print(rejected)
+    # print(sheet_id+" sheet_id")
+    # print(sheet_creds+" sheet_creds")
+    # print(passed)
+    # print(rejected)
     if sheet_id and sheet_creds:
         status_ph.markdown(
             '<div class="status-line">→ Pushing to Google Sheets…</div>',
