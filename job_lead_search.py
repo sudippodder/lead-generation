@@ -627,16 +627,24 @@ def push_to_google_sheets(jobs, rejected, sheet_id, credentials_path):
     if not HAS_GSPREAD:
         return False, "gspread not installed — run: pip install gspread google-auth"
 
-    if not os.path.exists(credentials_path):
-        return False, f"Credentials file not found: {credentials_path}"
-
     try:
         scopes = [
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive'
         ]
-        print(f"Using credentials file at: {credentials_path}")
-        creds = ServiceAccountCredentials.from_service_account_file(credentials_path, scopes=scopes)
+        
+        try:
+            # Try to parse credentials_path as JSON string
+            creds_dict = json.loads(credentials_path)
+            print("Using credentials from JSON string")
+            creds = ServiceAccountCredentials.from_service_account_info(creds_dict, scopes=scopes)
+        except json.JSONDecodeError:
+            # Fallback to file path
+            if not os.path.exists(credentials_path):
+                return False, "Credentials file not found and is not valid JSON."
+            print(f"Using credentials file at: {credentials_path}")
+            creds = ServiceAccountCredentials.from_service_account_file(credentials_path, scopes=scopes)
+
         gc = gspread.authorize(creds)
         sh = gc.open_by_key(sheet_id)
         print("Google Sheets connection successful")
