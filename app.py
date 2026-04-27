@@ -1,4 +1,11 @@
 import streamlit as st
+
+st.set_page_config(
+        page_title="Auth Template",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+    
 import sqlite3
 import hashlib
 import time
@@ -13,6 +20,14 @@ import job_lead_api
 import job_lead_ranker
 import job_lead_db
 import sqlite
+import filtered_job_lead
+import filtered_job_lead_new
+import settings
+import job_lead_search
+import export  
+import exportx 
+
+
 # --- Configuration ---
 load_dotenv()
 
@@ -245,13 +260,11 @@ def show_admin_page():
         st.warning("No users found in the database.")
 
 
+
+
 # --- Main Application Loop ---
 def main():
-    st.set_page_config(
-        page_title="Auth Template",
-        layout="wide",
-        initial_sidebar_state="expanded"
-    )
+    
 
     init_db()
     initialize_session_state()
@@ -298,9 +311,34 @@ def main():
 
         else:
             #st.info("Please sign in or register to access the application features.")
-            if st.button("Search", use_container_width=True):
+            #login = st.button("Login", use_container_width=True)
+            login = ''
+            search = st.button("Search", use_container_width=True)
+            export_btn = st.button("Export", use_container_width=True)
+            export_btnx = st.button("Export Excel", use_container_width=True)
+            #filtered_job_lead_new_hook = st.button("Filtered Job Lead New", use_container_width=True)
+            filtered_job_lead_new_hook=''
+            filtered_job_lead_hook = ''
+            filtered_job_lead_settings = st.button("Settings", use_container_width=True)
+            db = st.button("DB", use_container_width=True)
+            if login:
                  st.session_state['page'] = 'login'
-
+            elif export_btn:
+                st.session_state['page'] = 'export'
+            elif export_btnx:
+                st.session_state['page'] = 'exportx'
+            elif search:
+                st.session_state['page'] = 'search'
+            elif filtered_job_lead_hook:
+                st.session_state['page'] = 'filtered job lead'  
+            elif filtered_job_lead_new_hook:
+                st.session_state['page'] = 'filtered job lead new'  
+            elif filtered_job_lead_settings:
+                st.session_state['page'] = 'settings'  
+            elif db:
+                st.session_state['page'] = 'db'  
+            else:
+                st.session_state['page'] = st.session_state['page'] if st.session_state['page'] else 'login'
 
     if "logged_in" in st.session_state and st.session_state["logged_in"] == True:
         page = st.session_state['page']
@@ -322,8 +360,32 @@ def main():
         else:
             show_dashboard()
     else:
+        page = st.session_state['page']
+        #st.write(page)
+        if page == 'login':
+            #show_login_page()
+            job_lead_search.run()
+        elif page == 'search':
+            job_lead_search.run()
+        elif page == 'db':
+            sqlite.main() 
+        elif page == 'export':
+            export.run()
+        elif page == 'exportx':
+            exportx.run()
+        elif page == 'filtered job lead':
+            filtered_job_lead.run()
+        elif page == 'filtered job lead new':
+            filtered_job_lead_new.run()
+        elif page == 'settings':
+            settings.run()
+        else:
+            show_login_page()
+
+
         #show_login_page()
-        job_lead_db.run()
+        #job_lead_db.run()
+        #filtered_job_lead.run()
         #sqlite.main() 
 
 

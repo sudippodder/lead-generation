@@ -11,12 +11,12 @@ from bs4 import BeautifulSoup
 from collections import defaultdict
 
 # ── Page config ───────────────────────────────────────────────────────────────
-st.set_page_config(
-    page_title="Job Lead Finder",
-    page_icon="🎯",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+# st.set_page_config(
+#     page_title="Job Lead Finder",
+#     page_icon="🎯",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+# )
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 
@@ -128,7 +128,7 @@ def db_clear():
         conn.commit()
 
 # Initialise DB on startup
-init_db()
+#init_db()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SCORING ENGINE

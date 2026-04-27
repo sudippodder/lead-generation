@@ -9,12 +9,12 @@ from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 
 # ─── Page config ────────────────────────────────────────────────────────────
-st.set_page_config(
-    page_title="Job Lead Finder",
-    page_icon="🎯",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+# st.set_page_config(
+#     page_title="Job Lead Finder",
+#     page_icon="🎯",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+# )
 
 # ─── Custom CSS ─────────────────────────────────────────────────────────────
 
