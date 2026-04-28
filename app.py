@@ -314,7 +314,8 @@ def main():
             #login = st.button("Login", use_container_width=True)
             login = ''
             search = st.button("Search", use_container_width=True)
-            export_btn = st.button("Export", use_container_width=True)
+            #export_btn = st.button("Export", use_container_width=True)
+            export_btn = ''
             export_btnx = st.button("Export Excel", use_container_width=True)
             #filtered_job_lead_new_hook = st.button("Filtered Job Lead New", use_container_width=True)
             filtered_job_lead_new_hook=''
